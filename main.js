@@ -665,10 +665,10 @@ function viewportSet() {
   
   if (ww/wh >= cw/ch) {
     // windowのwidthが長い
-    document.querySelector("meta[name='viewport']").setAttribute("content", "width=" + (cw + (ww - wh*cw/ch)*ch/wh  ) );
+    document.querySelector("meta[name='viewport']").setAttribute("content", "width=" + (ch  *ww/wh  ) );
   } else {
     // それ以外
-    document.querySelector("meta[name='viewport']").setAttribute("content", "width=" + ch);
+    document.querySelector("meta[name='viewport']").setAttribute("content", "width=" + cw);
   }
 }
 window.addEventListener("DOMContentLoaded", viewportSet, false);

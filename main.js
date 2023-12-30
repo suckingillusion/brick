@@ -443,38 +443,67 @@ let brickKuzushiScene = function (keyword){
               ( newScene.ball[0].x +newScene.ball[0].vx - nearx) * ( newScene.ball[0].x +newScene.ball[0].vx - nearx) +( newScene.ball[0].y +newScene.ball[0].vy - neary) * ( newScene.ball[0].y +newScene.ball[0].vy - neary) < newScene.ball[0].radius * newScene.ball[0].radius
             ) {
               //角ならballの中心と角との傾きによって変化させる
+              //隣接するブロックのatatusが1なら変化させる
               if(iskado[0] == true && iskado[1] == true){
                 
                 if(nearx == b.x){
                   if(neary == b.y){
-                    if( newScene.ball[0].y　<=  newScene.ball[0].x +  b.y - b.x ){
-                      yhanten= true;
-                    }
-                    if(newScene.ball[0].y　>=  newScene.ball[0].x +  b.y - b.x ){
+                    if(newScene.bricks.arr[c][r - 1].status != 0){
                       xhanten = true;
+                    }else if(newScene.bricks.arr[c - 1][r].status != 0){
+                      yhanten = true;
+                    }else{
+                      if( newScene.ball[0].y　<=  newScene.ball[0].x +  b.y - b.x ){
+                        yhanten= true;
+                      }
+                      if(newScene.ball[0].y　>=  newScene.ball[0].x +  b.y - b.x ){
+                        xhanten = true;
+                      }
                     }
                   }else if(neary == b.y + brickHeight){
-                    if(newScene.ball[0].y　<= - newScene.ball[0].x +  b.y + brickHeight + b.x ){
-                      yhanten = true;
-                    }
-                    if(newScene.ball[0].y　>= - newScene.ball[0].x +  b.y + brickHeight + b.x ){
+                   if(r < brickRowCount - 1){
+                     if(newScene.bricks.arr[c][r + 1].status != 0){
                       xhanten = true;
+                     }
+                    }else if(newScene.bricks.arr[c - 1][r].status != 0){
+                      yhanten = true;
+                    } else{
+                      if(newScene.ball[0].y　<= - newScene.ball[0].x +  b.y + brickHeight + b.x ){
+                        yhanten = true;
+                      }
+                      if(newScene.ball[0].y　>= - newScene.ball[0].x +  b.y + brickHeight + b.x ){
+                        xhanten = true;
+                      }
                     }
                   }
                 }else if(nearx == b.x + brickWidth){
                   if (neary == b.y) {
-                    if (newScene.ball[0].y　<= -  newScene.ball[0].x +  b.y + b.x + brickWidth ) {
-                      yhanten = true;
-                    }
-                    if (newScene.ball[0].y　>= -  newScene.ball[0].x +  b.y + b.x + brickWidth ) {
+                    if(newScene.bricks.arr[c][r - 1].status != 0){
                       xhanten = true;
+                    }else if(newScene.bricks.arr[c + 1][r].status != 0){
+                      yhanten = true;
+                    }else{
+                      if (newScene.ball[0].y　<= -  newScene.ball[0].x +  b.y + b.x + brickWidth ) {
+                        yhanten = true;
+                      }
+                      if (newScene.ball[0].y　>= -  newScene.ball[0].x +  b.y + b.x + brickWidth ) {
+                        xhanten = true;
+                      }
                     }
                   } else if (neary == b.y + brickHeight) {
-                    if (newScene.ball[0].y　<=  newScene.ball[0].x +  b.y + brickHeight - b.x - brickWidth) {
+                    if (r < brickRowCount - 1) {
+                        if (newScene.bricks.arr[c][r + 1].status != 0) {
+                          xhanten = true;
+                        }
+                    }else if(newScene.bricks.arr[c + 1][r].status != 0){
                       yhanten = true;
-                    }
-                    if (newScene.ball[0].y　>=  newScene.ball[0].x +  b.y + brickHeight - b.x - brickWidth) {
-                      xhanten = true;
+                    }else{
+                      if (newScene.ball[0].y　<=  newScene.ball[0].x +  b.y + brickHeight - b.x - brickWidth) {
+                        yhanten = true;
+                      }
+                      if (newScene.ball[0].y　>=  newScene.ball[0].x +  b.y + brickHeight - b.x - brickWidth) {
+                        xhanten = true
+                      }
                     }
                   }
                 }

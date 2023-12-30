@@ -1,0 +1,11 @@
+body {
+    font-size: 15pt;
+    background: black;
+    height :100%;
+    text-align: center;
+}
+
+.hidden{
+  display: none;
+  
+}
